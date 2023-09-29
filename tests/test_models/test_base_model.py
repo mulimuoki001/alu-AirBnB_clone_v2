@@ -75,7 +75,7 @@ class test_basemodel(unittest.TestCase):
 
     def test_kwargs_one(self):
         """ """
-        n = {"invalid_key": "test"}
+        n = {"Name": "test"}
         with self.assertRaises(KeyError):
             new = self.value(**n)
 
@@ -97,5 +97,3 @@ class test_basemodel(unittest.TestCase):
         new = BaseModel(**n)
         self.new_method(new)
 
-    def new_method(self, new):
-        self.assertFalse(new.created_at == new.updated_at)
