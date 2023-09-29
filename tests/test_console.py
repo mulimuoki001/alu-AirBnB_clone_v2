@@ -79,7 +79,7 @@ class TestHBNBCommand(unittest.TestCase):
 
     def test_create_errors(self):
         with patch("sys.stdout", new=StringIO()) as f:
-            self.HBNB.ONECMD("create")
+            self.HBNB.onecmd("create")
             self.assertEqual("** class doesn't exist **\n", f.getvalue())
 
     @unittest.skipIf(type(models.storage) == DBStorage, "Testing Storage")
@@ -204,7 +204,7 @@ class TestHBNBCommand(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("all user")
             obj = f.getvalue()
-        my_id = obj[obj.find("(") + 1 : obj.find(")")]
+        my_id = obj[obj.find("(") + 1: obj.find(")")]
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("update User " + my_id)
             self.assertEqual("** attribute name missing **\n", f.getvalue())
@@ -259,7 +259,7 @@ class TestHBNBCommand(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("all User")
             obj = f.getvalue()
-        my_id = obj[obj.find("(") + 1 : obj.find(")")]
+        my_id = obj[obj.find("(") + 1: obj.find(")")]
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("User.update(" + my_id + ")")
             self.assertEqual("** attribute name missing **\n", f.getvalue())
