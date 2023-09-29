@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" """
+"""Defines the unittests for the base model class."""
 from models.base_model import BaseModel
 import unittest
 import datetime
@@ -99,4 +99,3 @@ class test_basemodel(unittest.TestCase):
 
     def new_method(self, new):
         self.assertFalse(new.created_at == new.updated_at)
-
