@@ -134,7 +134,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_create_kwargs(self):
         with patch("sys.stdout", new=StringIO()) as f:
             call = (
-                'create Place city_id="0001" name="My_house"'
+                'create Place city_id="0001" name="My_house" '
                 'number_rooms="4" latitude=37.77 longitude=37.72'
             )
             self.HBNB.onecmd(call)
@@ -147,7 +147,7 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertIn('"name": "My_house"', output)
             self.assertIn('"number_rooms": "4"', output)
             self.assertIn('"latitude": 37.77', output)
-            self.assertIn('"longitude": "a"', output)
+            self.assertIn('"longitude": "37.72"', output)    
 
     def test_show(self):
         with patch("sys.stdout", new=StringIO()) as f:
