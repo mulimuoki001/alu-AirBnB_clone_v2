@@ -134,7 +134,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_create_kwargs(self):
         with patch("sys.stdout", new=StringIO()) as f:
             call = (
-                'create Place city_id="0001" name="My_house" '
+                'create Place city_id="1" name="My_house" '
                 'number_rooms="4" latitude=37.77 longitude=37.72'
             )
             self.HBNB.onecmd(call)
@@ -143,11 +143,11 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("all Place")
             output = f.getvalue()
             self.assertIn(pl, output)
-            self.assertIn('"city_id": "0001"', output)
+            self.assertIn('"city_id": "1"', output)
             self.assertIn('"name": "My_house"', output)
             self.assertIn('"number_rooms": "4"', output)
             self.assertIn('"latitude": 37.77', output)
-            self.assertIn('"longitude": "37.72"', output)    
+            self.assertIn('"longitude": "37.72"', output)
 
     def test_show(self):
         with patch("sys.stdout", new=StringIO()) as f:
@@ -204,7 +204,7 @@ class TestHBNBCommand(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("all user")
             obj = f.getvalue()
-        my_id = obj[obj.find("(") + 1: obj.find(")")]
+        my_id = obj[obj.find("(") + 1 : obj.find(")")]
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("update User " + my_id)
             self.assertEqual("** attribute name missing **\n", f.getvalue())
@@ -259,7 +259,7 @@ class TestHBNBCommand(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("all User")
             obj = f.getvalue()
-        my_id = obj[obj.find("(") + 1: obj.find(")")]
+        my_id = obj[obj.find("(") + 1 : obj.find(")")]
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("User.update(" + my_id + ")")
             self.assertEqual("** attribute name missing **\n", f.getvalue())
