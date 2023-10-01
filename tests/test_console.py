@@ -60,7 +60,7 @@ class TestHBNBCommand(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.do_all.__doc__)
         self.assertIsNotNone(HBNBCommand.do_update.__doc__)
         self.assertIsNotNone(HBNBCommand.count.__doc__)
-        self.assertIsNotNone(HBNBCommand.strip.__doc__)
+        self.assertIsNotNone(HBNBCommand.strip_clean.__doc__)
         self.assertIsNotNone(HBNBCommand.default.__doc__)
 
     def test_emptyline(self):
@@ -80,7 +80,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_create_errors(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("create")
-            self.assertEqual("** class doesn't exist **\n", f.getvalue())
+            self.assertEqual("** class name missing **\n", f.getvalue())
 
     @unittest.skipIf(type(models.storage) == DBStorage, "Testing Storage")
     def test_create(self):
@@ -135,7 +135,7 @@ class TestHBNBCommand(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             call = (
                 'create Place city_id="0001" name="My_house"'
-                'number_rooms="4" latitude=37.77 longitude=a'
+                'number_rooms="4" latitude=37.77 longitude=37.72'
             )
             self.HBNB.onecmd(call)
             pl = f.getvalue().strip()
