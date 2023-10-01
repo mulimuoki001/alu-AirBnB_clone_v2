@@ -39,6 +39,8 @@ class BaseModel:
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key != "__class__":
                     setattr(self, key, value)
+                else:
+                    raise KeyError(f"Unknown attribute: {key}")
         self.updated_at = datetime.utcnow()  # Update the updated_at attribute
 
     def save(self):
