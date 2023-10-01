@@ -241,7 +241,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_destroy(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("Galaxy.destroy()")
-            self.assertEqual("** class name missing **\n", f.getvalue())
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("User.destroy(12345)")
             self.assertEqual("** no instance found **\n", f.getvalue())
@@ -250,7 +250,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_update(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("sldkfjsl.update()")
-            self.assertEqual("** class name missing **\n", f.getvalue())
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("User.update(12345)")
             self.assertEqual("** no instance found **\n", f.getvalue())

@@ -51,6 +51,8 @@ class HBNBCommand(cmd.Cmd):
 
             kwargs = {}
             for i in range(1, len(my_list)):
+                if "=" not in my_list[i]:
+                    raise ValueError("Invalid key-value pair: {}".format(my_list[i]))
                 key, value = tuple(my_list[i].split("="))
                 if value[0] == '"':
                     value = value.strip('"').replace("_", " ")
