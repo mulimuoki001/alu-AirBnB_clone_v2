@@ -7,9 +7,8 @@ from models.user import User
 class test_User(test_basemodel):
     """ """
 
-    def __init__(self, *args, **kwargs):
+    def setUp(self):
         """ """
-        super().__init__(*args, **kwargs)
         self.name = "User"
         self.value = User
 
@@ -32,4 +31,3 @@ class test_User(test_basemodel):
         """ """
         new = self.value()
         self.assertEqual(type(new.password), str)
-
