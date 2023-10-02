@@ -22,6 +22,15 @@ class User(BaseModel, Base):
         reviews (sqlalchemy relationship): The User-Review relationship.
     """
 
+    def __init__(self, email=None, first_name=None, last_name=None, password=None):
+        self.email = email
+        self.first_name = first_name
+        self.last_name = last_name
+        self.password = password
+
+    def __str__(self):
+        return f"User(email='{self.email}', first_name='{self.first_name}', last_name='{self.last_name}')"
+
     __tablename__ = "users"
     email = Column(String(128), nullable=False, default="")
     password = Column(String(128), nullable=False, default="")
