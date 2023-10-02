@@ -1,8 +1,8 @@
-from tests.test_models.test_base_model import TestBaseModel
+from tests.test_models.test_base_model import test_basemodel as Test_BaseModel
 from models.user import User
 
 
-class TestUser(TestBaseModel):
+class Test_User(Test_BaseModel):
     def setUp(self):
         self.name = "User"
         self.value = User
