@@ -30,7 +30,7 @@ class test_basemodel(unittest.TestCase):
     def test_default(self):
         """ """
         i = self.value()
-        self.assertEqual(type(i), self.value)
+        self.assertEqual(type(i), self.value, str)
 
     def test_kwargs(self):
         """ """
