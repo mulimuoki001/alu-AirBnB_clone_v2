@@ -33,14 +33,16 @@ class BaseModel:
         """
         self.id = str(uuid4())
         self.created_at = self.updated_at = datetime.utcnow()
+
+        # Exclude __class__ attribute
+        kwargs.pop("__class__", None)
+
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                elif key != "__class__":
-                    setattr(self, key, value)
-                else:
-                    raise KeyError(f"Unknown attribute: {key}")
+                setattr(self, key, value)
+
         self.updated_at = datetime.utcnow()  # Update the updated_at attribute
 
     def save(self):
