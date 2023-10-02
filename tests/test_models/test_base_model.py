@@ -59,7 +59,8 @@ class test_basemodel(unittest.TestCase):
     def test_str(self):
         new = self.value()
         expected_str = "[User] ({}) {}".format(
-            new.id, {k: v for k, v in new.__dict__.items() if k != "_sa_instance_state"}
+            new.id, {k: v for k,
+                v in new.__dict__.items() if k != "_sa_instance_state"}
         )
         self.assertEqual(str(new), expected_str)
 
