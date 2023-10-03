@@ -10,7 +10,7 @@ from models.city import City
 import os
 
 
-#skip the test if db is not the storage
+# skip these tests if db is not the storage
 @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db', "skip if not fs")
 class TestDBSorage(unittest.TestCase):
     """test DB Storage"""
@@ -25,7 +25,7 @@ class TestDBSorage(unittest.TestCase):
 
     def test_user(self):
         """Tests the user"""
-        user = User(name="Brian", email="brian@gmail.com", password="Brian12345")
+        user = User(name="Brian", email="brian@gmail.com", password="Brian123")
         user.save()
         self.assertFalse(user.id in self.storage.all())
         self.assertEqual(user.name, "Brian")
@@ -56,7 +56,7 @@ class TestDBSorage(unittest.TestCase):
         city.state_id = state.id
         city.save()
 
-        user = User(name="Brian", email="brian@gmail.com", password="Brian12345")
+        user = User(name="Brian", email="brian@gmail.com", password="Brian123")
         user.save()
 
         place = Place(name="PentHouse", number_rooms="4")
@@ -73,25 +73,25 @@ class TestDBSorage(unittest.TestCase):
         amenity = Amenity(name="Spoon")
         amenity.save()
         self.assertFalse(amenity.id in self.storage.all())
-        self.assertEqual(amenity.name. "Spoon")
+        self.assertEqual(amenity.name, "Spoon")
 
     def test_review(self):
         """Tests the review"""
         state = State(name="Kenya")
         state.save()
 
-        city = City(name=""Nairobi)
-        city.state_id  = state.id
+        city = City(name="Nairobi")
+        city.state_id = state.id
         city.save()
 
-        user = User(name="Brian", email="brian@gmail.com", password=    "Brian12345")
+        user = User(name="Brian", email="brian@gmail.com", password="Brian123")
         user.save()
 
         place = Place(name="PentHouse", number_rooms="4")
         place.city_id = city.id
         place.user_id = user.id
         place.save()
-        
+
         review = Review(text="work smart", place_id=place.id, user_id=user.id)
         review.save()
 
@@ -99,5 +99,5 @@ class TestDBSorage(unittest.TestCase):
         self.assertEqual(review.text, "work smart")
 
 
-    if __name__== '__main__':
+    if __name__ == '__main__':
         unittest.main()
