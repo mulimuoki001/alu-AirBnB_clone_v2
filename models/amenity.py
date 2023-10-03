@@ -7,6 +7,7 @@ from sqlalchemy import String
 from sqlalchemy.orm import relationship
 from models.place import place_amenity
 
+
 class Amenity(BaseModel, Base):
     """Represents an Amenity for a MySQL database.
 
