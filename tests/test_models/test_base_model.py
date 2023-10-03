@@ -75,5 +75,5 @@ class test_basemodel(unittest.TestCase):
         self.assertEqual(type(new.updated_at), datetime.datetime)
         n = new.to_dict()
         new = BaseModel(**n)
-        self.assertalmostEqual(new.created_at.timestamp(),
+        self.assertAlmostEqual(new.created_at.timestamp(),
                                new.updated_at.timestamp(), delta=1)
