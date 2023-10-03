@@ -44,18 +44,17 @@ class DBStorage:
                 cls = eval(cls)
             query = self.__session.query(cls)
             for ele in query:
-                key = "{}"."{}".format(type(ele).__name__, ele.id)
+                key = "{}.{}".format(type(ele).__name__, ele.id)
                 dic[key] = ele
         else:
             lists = [State, City, User, Place, Review, Amenity]
             for classe in lists:
                 query = self.__session.query(classe)
                 for ele in query:
-                    key = "{}"."{}".format(type(ele)).__name__, ele.id
+                    key = "{}.{}".format(type(ele).__name__, ele.id)
                     dic[key] = ele
 
         return (dic)
-            
 
     def new(self, obj):
         """Add obj to the current database session."""
