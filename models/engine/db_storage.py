@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Defines the DBStorage engine."""
 from os import getenv
-from models.base_model import Base
-from models.base_model import BaseModel
+from sqlalchemy.orm import sesssionmaker, scoped_session
+from sqlalchemy import (create_engine)
+from sqlalchemy.ext.declarative import declarative_base
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
@@ -10,35 +11,30 @@ from models.review import Review
 from models.state import State
 from models.user import User
 from sqlalchemy import create_engine
-from sqlalchemy.orm import relationship
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm import sessionmaker
 
 
 class DBStorage:
-    """Represents a database storage engine.
-
-    Attributes:
-        __engine (sqlalchemy.Engine): The working SQLAlchemy engine.
-        __session (sqlalchemy.Session): The working SQLAlchemy session.
-    """
-
+    """ create tables in environmental"""
     __engine = None
     __session = None
 
     def __init__(self):
-        """Initialize a new DBStorage instance."""
+        user = getenv("HBNB_MYSQL_USER")
+        passwd = getenv("HBNB_MYSQL_PWD")
+        host = getenv("HBNB_MYSQL_HOST")
+        db = getenv("HBNB_MYSQL_HBNB_DB")
+        env = getenv("HBNB_ENV")
+
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
-                                      format(getenv("HBNB_MYSQL_USER"),
-                                             getenv("HBNB_MYSQL_PWD"),
-                                             getenv("HBNB_MYSQL_HOST"),
-                                             getenv("HBNB_MYSQL_DB")),
+                                      format(user, passwd, host, db),
                                       pool_pre_ping=True)
-        if getenv("HBNB_ENV") == "test":
+        
+        if env == "test":
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """ """
+        dic = {}
         if cls:
             if type(cls) is str:
                 cls = eval(cls)
@@ -66,15 +62,15 @@ class DBStorage:
 
     def delete(self, obj=None):
         """Delete obj from the current database session."""
-        if obj is not None:
+        if obj:
             self.__session.delete(obj)
 
     def reload(self):
         """Create all tables in the database and initialize a new session."""
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine,
+        ses = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
-        Session = scoped_session(session_factory)
+        Session = scoped_session(ses)
         self.__session = Session()
 
     def close(self):
