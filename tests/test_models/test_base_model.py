@@ -76,4 +76,4 @@ class test_basemodel(unittest.TestCase):
         n = new.to_dict()
         new = BaseModel(**n)
         self.assertalmostEqual(new.created_at.timestamp(),
-                               new.updated_at).timestamp(), delta=1)
+                               new.updated_at.timestamp(), delta=1)

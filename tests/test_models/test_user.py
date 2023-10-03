@@ -5,13 +5,13 @@ from models.user import User
 
 class test_User(Test_BaseModel):
     """Test user class """
-    
-    def __init__(self, *args, **kwars):
+
+    def __init__(self, *args, **kwargs):
         """ """
         super().__init__(*args, **kwargs)
         self.name = "User"
         self.value = User
-        
+
     def test_first_name(self):
         new = self.value()
         new.first_name = "Brian"
