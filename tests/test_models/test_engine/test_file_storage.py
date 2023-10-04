@@ -25,7 +25,7 @@ class test_fileStorage(unittest.TestCase):
             os.remove('file.json')
         except:
             pass
-        del storage
+        del self.storage
 
     def test_obj_list_empty(self):
         """ __objects is initially empty """
