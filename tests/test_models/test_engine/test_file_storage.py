@@ -15,10 +15,10 @@ class test_fileStorage(unittest.TestCase):
         """ Set up test environment """
         self.storage = models.storage
         del_list = []
-        for key in self.storage._FileStorage__objects.keys():
+        for key in self.storage.FileStorage__objects.keys():
             del_list.append(key)
         for key in del_list:
-            del self.storage._FileStorage__objects[key]
+            del self.storage.FileStorage__objects[key]
 
     def tearDown(self):
         """ Remove storage file at end of tests """
@@ -92,7 +92,7 @@ class test_fileStorage(unittest.TestCase):
 
     def test_type_path(self):
         """ Confirm __file_path is string """
-        self.assertEqual(type(self.storage._FileStorage__file_path), str)
+        self.assertEqual(type(self.storage.FileStorage__file_path), str)
 
     def test_type_objects(self):
         """ Confirm __objects is a dict """
