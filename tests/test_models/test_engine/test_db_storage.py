@@ -59,7 +59,7 @@ class TestDBSorage(unittest.TestCase):
         user = User(name="Brian", email="brian@gmail.com", password="Brian123")
         user.save()
 
-        place = Place(name="PentHouse", number_rooms="4")
+        place = Place(name="PentHouse", number_rooms=4)
         place.city_id = city.id
         place.user_id = user.id
         place.save()
