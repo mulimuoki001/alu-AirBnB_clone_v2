@@ -7,7 +7,6 @@ from sqlalchemy.orm import relationship
 from os import getenv
 import models
 import shlex
-from models.amenity import Amenity
 
 
 place_amenity = Table(
